@@ -1,63 +1,65 @@
-# Multithreaded Web Server
+Java Load Balancer Simulation ⚖️💻
 
-A Java-based multithreaded web server implementation designed to handle multiple client requests concurrently, improving server responsiveness and throughput.
+This project is a Java-based Load Balancer Simulation that demonstrates how a load balancer distributes client requests to multiple servers using different load balancing algorithms.
+It includes a Swing-based GUI 🎨 for real-time monitoring and control.
 
----
+✨ Features
+Three Load Balancing Algorithms ⚙️
 
-## About
+🔄 Round Robin – Requests are distributed evenly in a circular order.
+📉 Least Connections – Requests are assigned to the server with the fewest active connections.
+🔢 IP Hashing – Requests are mapped to servers based on the client IP hash.
+Auto-Scaling 📈📉
+Automatically adds or removes server threads based on the average number of pending requests per server.
 
-This project implements a basic web server using Java threads to enable handling multiple HTTP client connections simultaneously. It demonstrates core networking concepts, socket programming, and concurrent request processing.
+Socket Programming 🌐
+Uses Java Sockets to send serialized UserRequest objects from clients to the load balancer.
 
----
+Thread-based Server Simulation 🧵
+Each server runs on its own thread and processes incoming requests from a shared BlockingQueue.
 
-## Features
+Swing GUI 🖥️
+A Matrix-style control panel 💚🖤 that allows:
 
-- Multithreaded request handling for simultaneous clients  
-- Basic HTTP/1.1 protocol support  
-- Serving static files such as HTML, CSS, and JavaScript  
-- Graceful handling of client connections and disconnections  
-- Simple logging of incoming requests and responses  
+➕ Adding/removing servers manually
+🔄 Switching between algorithms
+🚀 Toggling auto-scaling ON/OFF
+📊 Viewing real-time stats: current algorithm, total running servers, total requests handled
+🛠 Technologies & Concepts Used
+Java Socket Programming
 
----
+📡 ServerSocket for listening to incoming client connections
+📦 ObjectOutputStream / ObjectInputStream for sending and receiving serialized objects
+Object Serialization
 
-## Technologies Used
+📄 UserRequest objects are serialized and sent over the network
+Multithreading
 
-- Java Socket programming  
-- Multithreading with Java Threads  
-- Standard Java I/O for file handling  
-- HTTP protocol basics  
+🧵 Each server is a separate thread
+🚚 Dispatcher thread in the load balancer distributes requests to the appropriate server
+BlockingQueue (LinkedBlockingQueue)
 
----
+🗃️ Used to store incoming requests and allow thread-safe processing
+Swing GUI
 
-## Getting Started
+🎛️ JFrame, JButton, JToggleButton, JLabel for the control panel
+🎨 Styled with Matrix 💚 / black 🖤 theme
+📂 Project Structure
+src/
+├── 📄 Main.java                  – Sends UserRequest objects (Client simulation)
+├── 📄 LoadBalancer.java          – Receives requests, distributes to servers
+├── 📄 LoadBalancerConsoleUI.java – Swing control panel for managing servers & settings
+├── 📄 Server.java                – Simulated server processing requests
+├── 📄 UserRequest.java           – Serializable request object
 
-### Prerequisites
 
-- Java JDK 8 or higher  
+📚 Key Learning Points
+🧠 Understanding how load balancers work
 
----
+🔄 Implementing different distribution algorithms
 
-### Running the Project
+🌐 Using Java sockets to send serialized objects
 
-1. Clone the repository:git clone https://github.com/SPYDE3/Load-Balancer-using-Java.git
-2.                                 
-3. Navigate to the project directory and compile:
-4. Run the server:
-5. Access the server via a web browser at http://localhost:8080 (or configured port).
+🧵 Managing concurrency with threads and BlockingQueue
 
-Project Structure
-  src/ - Java source files for server implementation
-  bin/ - Compiled bytecode (generated after compile)
-  resources/ - Static files served by the server (if any)
-  
-Usage
-  The server listens on a specified port and creates a new thread for each incoming client connection. Requests are parsed, and appropriate responses are served back to the client. Useful for learning the           fundamentals of web servers and concurrency.
-
-Contributing
-Contributions are welcome! Feel free to fork the repository and submit pull requests with enhancements or bug fixes.
-
-License
-This project is licensed under the MIT License.
-
-Contact
-For questions or suggestions, please open an issue or contact the maintainer.
+🎨 Creating a functional Swing GUI for system control
